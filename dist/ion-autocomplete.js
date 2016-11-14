@@ -30,7 +30,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                 selectItemsLabel: '@',
                 selectedItemsLabel: '@',
                 templateUrl: '@',
-                template: '@',
+                template: '=',
                 itemValueKey: '@',
                 itemViewValueKey: '@'
             },
