@@ -30,6 +30,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                 selectItemsLabel: '@',
                 selectedItemsLabel: '@',
                 templateUrl: '@',
+                template: '@',
                 itemValueKey: '@',
                 itemViewValueKey: '@'
             },
@@ -49,6 +50,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                     controller.selectItemsLabel = valueOrDefault(controller.selectItemsLabel, "Select an item...");
                     controller.selectedItemsLabel = valueOrDefault(controller.selectedItemsLabel, $interpolate("Selected items{{maxSelectedItems ? ' (max. ' + maxSelectedItems + ')' : ''}}:")(controller));
                     controller.templateUrl = valueOrDefault(controller.templateUrl, undefined);
+                    controller.template = valueOrDefault(controller.template, undefined);
                     controller.itemValueKey = valueOrDefault(controller.itemValueKey, undefined);
                     controller.itemViewValueKey = valueOrDefault(controller.itemViewValueKey, undefined);
                 });
@@ -115,8 +117,10 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                 // load the template synchronously or asynchronously
                 $q.when().then(function () {
 
-                    // first check if a template url is set and use this as template
-                    if (ionAutocompleteController.templateUrl) {
+                    if(ionAutocompleteController.template) {
+                        return ionAutocompleteController.template;
+                    // then check if a template url is set and use this as template
+                    } else if (ionAutocompleteController.templateUrl) {
                         return $templateRequest(ionAutocompleteController.templateUrl);
                     } else {
                         return template;
