@@ -32,7 +32,8 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                 templateUrl: '@',
                 template: '=',
                 itemValueKey: '@',
-                itemViewValueKey: '@'
+                itemViewValueKey: '@',
+                showSearchField: "@"
             },
             controllerAs: 'viewModel',
             controller: ['$attrs', '$timeout', '$scope', function ($attrs, $timeout, $scope) {
@@ -53,6 +54,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                     controller.template = valueOrDefault(controller.template, undefined);
                     controller.itemValueKey = valueOrDefault(controller.itemValueKey, undefined);
                     controller.itemViewValueKey = valueOrDefault(controller.itemViewValueKey, undefined);
+                    controller.showSearchField = valueOrDefault(controller.showSearchField, true);
                 });
 
                 // set the default values of the passed in attributes
